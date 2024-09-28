@@ -58,6 +58,130 @@ public:
        }
 };
 
+class Person{
+protected:
+    int id;
+    string name,password;
+public:
+    Person(){
+     }
+    Person(int id,string name,string password){
+    this->id=id;
+    setName(name);
+    setPassword(password);
+    }
+    void setId(int id){
+    this->id=id;
+    }
+    void setName(string name){
+      if(Validation::Name(name)){
+         this->name=name;
+      }
+      else{
+        cout<<"Invalid"<<endl;
+       }
+    }
+    void setPassword(string password){
+      if(Validation::Password(password)){
+        this->password=password;
+      }
+      else{
+        cout<<"Invalid"<<endl;
+      }
+    }
+    int getID(){
+    return id;
+    }
+    string getName(){
+    return name;
+    }
+    string getPassword(){
+    return password;
+    }
+    virtual void DisplayInfo()=0;
+
+};
+class Client:public Person{
+private:
+    double balance;
+public:
+    Client():Person(){}
+    Client(int id,string name,string password,double balance):Person(id,name,password){
+      setBalance(balance);
+    }
+    void setBalance(double balance){
+    if(Validation::Balance(balance)){
+        this->balance=balance;
+      }
+      else{
+        cout<<"Invalid"<<endl;
+      }
+    }
+    double getBalance(){
+    return balance;
+    }
+    void Deposit(double amount){
+    if(amount>0){
+        this->balance+=amount;
+      }
+     }
+     void Withdraw(double amount){
+     if(amount<=balance&&amount>0){
+        this->balance-=amount;
+       }
+
+     }
+     void TransferTo(double amount,Client& recipient){
+       Withdraw(amount);
+        recipient.Deposit(amount);
+     }
+     void CheckBalance(){
+          cout<<"Balance:"<<balance<<endl;
+ }
+
+     void DisplayInfo(){
+      cout<<"Id:"<<id<<endl;
+      cout<<"Name:"<<name<<endl;
+      cout<<"Password:"<<password<<endl;
+      cout<<"Balance:"<<balance<<endl;
+           }
+
+};
+class Employee:public Person{
+private:
+    double salary;
+public:
+    Employee():Person(){}
+    Employee(int id,string name,string password,double salary):Person(id,name,password){
+    setSalary(salary);
+    }
+    void setSalary(double salary){
+    if(Validation::Salary(salary)){
+        this->salary=salary;
+    }
+    else{
+        cout<<"Invalid"<<endl;
+     }
+
+    }
+    double getSalary(){
+    return salary;
+    }
+    void DisplayInfo(){
+      cout<<"Id:"<<id<<endl;
+      cout<<"Name:"<<name<<endl;
+      cout<<"Password:"<<password<<endl;
+      cout<<"Salary:"<<salary<<endl;
+    }
+};
+
+class Admin:public Employee{
+public:
+    Admin():Employee(){}
+    Admin(int id,string name,string password,double salary):Employee(id,name,password,salary){
+
+    }
+};
 int main()
 {
 

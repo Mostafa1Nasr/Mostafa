@@ -57,7 +57,7 @@ public:
 
        }
 };
-
+//========================================================================================
 class Person{
 protected:
     int id;
@@ -101,7 +101,8 @@ public:
     virtual void DisplayInfo()=0;
 
 };
-class Client:public Person{
+//=======================================================================================
+class Client : public Person{
 private:
     double balance;
 public:
@@ -142,11 +143,11 @@ public:
      void DisplayInfo(){
       cout<<"Id:"<<id<<endl;
       cout<<"Name:"<<name<<endl;
-      cout<<"Password:"<<password<<endl;
       cout<<"Balance:"<<balance<<endl;
            }
 
 };
+//=========================================================================================
 class Employee:public Person{
 private:
     double salary;
@@ -170,12 +171,11 @@ public:
     void DisplayInfo(){
       cout<<"Id:"<<id<<endl;
       cout<<"Name:"<<name<<endl;
-      cout<<"Password:"<<password<<endl;
-      cout<<"Salary:"<<salary<<endl;
+
     }
 };
-
-class Admin:public Employee{
+//=========================================================================================
+class Admin : public Employee{
 public:
     Admin():Employee(){}
     Admin(int id,string name,string password,double salary):Employee(id,name,password,salary){

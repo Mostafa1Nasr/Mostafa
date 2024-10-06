@@ -169,9 +169,7 @@ public:
     return salary;
     }
     void DisplayInfo(){
-      cout<<"Id:"<<id<<endl;
-      cout<<"Name:"<<name<<endl;
-      cout<<"Salary:"<<salary<<endl;
+    
     }
 };
 //=========================================================================================
